@@ -9,7 +9,8 @@
 ![Sine Wave reading on an oscilloscope](images/SineWaveReading.png)
 
 # Summary
-    The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to generate a 100 Hz sine wave using the PWM driver.
+
+The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to generate a 100 Hz sine wave using the PWM driver.
 
 ## Related Documentation
 
@@ -52,7 +53,7 @@ System/Clock SettingsDefault Clock settings are used for this demo
 - DMA Driver
     - DMA Channel 0 Settings:
         |Setting|Value|Explaination|
-        |---|---|---|
+        |--------------|----|-------------------------------------------------------------------------------------------------------|
         |Enable Channel|True| Enables the Channel.|
         |Enable Reload|True|The registers are reloaded to previous values at the next start.|
         |Transfer Mode|Repeated One-Shot|This allows the DMA to iterate to the Transfer Count value then start over repeatedly.|
