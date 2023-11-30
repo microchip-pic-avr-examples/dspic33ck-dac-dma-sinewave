@@ -6,21 +6,28 @@
 
 ## Sine Wave Demo using the DMA, DAC and PWM drivers
 
-![Sine Wave reading on an oscilloscope](images/SineWaveReading.png)
+![Overall Project](images/Explorer16_32_connection.png)
 
 # Summary
 
-The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to generate a 100 Hz sine wave using the PWM driver.
+The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to generate a 100 Hz sine wave using the PWM driver. This project is interchangable between the Explorer Board 16/32 with a dsPIC33CK256MP508 PIM and the dsPIC33CK Curiosity development boards.
 
 ## Related Documentation
 
-[DMA Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=DMA_16BIT_MELODY_DRIVER&version=latest&redirect=true)
+### DMA
+- [DMA Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=DMA_16BIT_MELODY_DRIVER&version=latest&redirect=true)
 
-[DMA FRM Documentation](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/ReferenceManuals/dsPIC33-PIC24-FRM-Direct-Memory-Access-Controller-%28DMA%29-DS30009742C.pdf)
+- [DMA FRM Documentation](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/ReferenceManuals/dsPIC33-PIC24-FRM-Direct-Memory-Access-Controller-%28DMA%29-DS30009742C.pdf)
 
-[DAC Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=CMP_DAC_Melody_Driver&version=latest&redirect=true)
+### DAC
+- [DAC Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=CMP_DAC_Melody_Driver&version=latest&redirect=true)
 
-[PWM Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=PWM_16BIT_MELODY_DRIVER&version=latest&redirect=true)
+- [DAC FRM Documentation](https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33-PIC24-FRM-High-Speed-Analog-Comparator-with-Slope-Compensation-DAC-DS70005280.pdf)
+
+### PWM
+- [PWM Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=PWM_16BIT_MELODY_DRIVER&version=latest&redirect=true)
+
+- [PWM FRM Documentation](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/ReferenceManuals/30003035b.pdf)
 
 # Software Used 
 - MPLAB® X IDE  **6.15** or newer (https://www.microchip.com/MPLABXIDE)
@@ -30,6 +37,7 @@ The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the D
 
 # Hardware Used
 - Debugging tool: MPLAB® PICkit™ 4 In-Circuit Debugger (https://www.microchip.com/PICkit4) **or** PKOB (PICkit On-Board)
+- Optional Oscilloscpope or probe to view the sinewave output.
 #### With either of the selected boards:
 - dsPIC33CK Curiosity Development Board (https://www.microchip.com/dsPIC33CKCuriosity)
 - Explorer 16/32 Development Board (https://www.microchip.com/Explorer1632)
@@ -47,10 +55,18 @@ The setup for each board is slightly different:
     - The Sine Wave signal (DACOUT) can be read in on RA3
 
 ## Software Setup
-### Peripheral Configurations
 
-System/Clock SettingsDefault Clock settings are used for this demo
-- DMA Driver Channel 0 Settings:
+### Programming the Device
+1. Open the dspic33ck_dac_dma_pwm_sinewave.X project in MPLAB® X IDE.
+2. Right click the project in "Projects" tab of MPLAB® X IDE and select "Set as Main Project".
+3. Plug in the PKOB (PICkit On-Board) or the PICKit 4 from the board to the PC.
+4. Program the device by selecting the "Make and Program Device (Project dspic33ck_dac_dma_pwm_sinewave)" button on the menu bar.
+5. The project should build and program successfully.
+
+### Peripheral Configurations
+Omitted configurations are default values set by MCC Melody. 
+
+#### 1. DMA Driver's DMA Channel 0 Settings:
 
 |Setting|Value|Explaination|
 |---|----|---|
@@ -65,17 +81,39 @@ System/Clock SettingsDefault Clock settings are used for this demo
 |Data Size|16 bit|Sets that transaction size.|
 |Transfer Count|0x100|The number of times to iterate in one-shot. (256 times)|
 
-- DAC Driver
+#### 2. DAC Driver
 
-- PWM Driver
-### Programming the Device
-1. Open the dspic33ck_dac_dma_pwm_sinewave.X project in MPLAB® X IDE.
-2. Right click the project in "Projects" tab of MPLAB® X IDE and select "Set as Main Project".
-3. Plug in the PKOB (PICkit On-Board) or the PICKit 4 from the board to the PC.
-4. Program the device by selecting the "Make and Program Device (Project dspic33ck_dac_dma_pwm_sinewave)" button on the menu bar.
-5. The project should build and program successfully.
+|Setting|Value|Explaination|
+|---|---|---|
+|DAC output Enable|True|This enables the DACOUT pin.|
+
+#### 3. PWM Driver
+
+|Setting|Value|Explaination|
+|---|---|---|
+|Module Enable|True|Enables the PWM module.|
+|Requested Frequency (Hz)|25600|This value is calculated based on the number of points to iterate multiplied by the expected output frequecy. *Continued explaination in the explaination section below.|
+|Sync/Trigger|Sync|This is set since PWM is not triggered by any external interrupt.|
+|PWM PLIB Selector|SCCP1|This is the timer that generates a compare event being used by the DMA driver.|
 
 # Operation
-After programming the device and connecting an Oscilloscope to the pin described before a 100 Hz sinewave will be present. 
+After proggraming the device the output can be read off of P25 on the Explorer Board:
+
+![Explorer Board Pin](images/Explorer16_32.png)
+
+After proggraming the device the output can be read off of RA4 on the Curiosity Board:
+
+![Curiosity Board Pin](images/Curiosity.png)
+
+A 100 Hz sinewave will be present:
+
+![Sine Wave reading on an oscilloscope](images/SineWaveReading.png)
+
+## PWM requested frequency explaination
+
+Every SCCP1 event (being used as the DMA trigger to update the DAC value) occurs on every falling edge of the PWM (since PWM utilizes the SCCP1 timer compare). The frequency we select for the PWM in Hz represents the number of SCCP1 events per second. Since the sine lookup table is defined, the SCCP1 event needs to occur 256 times per 1 Hz of the expected output to represent the Correct period. This boils down to a multiplication problem:
+
+PWM Frequency (Hz) = Points Length (Sine wave table Length) * Required Output Frequency (Hz)
 
 
+So if there is a need to lower the outputted sine waves frequency to 10 Hz with a 512 point sine wave lookup table updating the PWM to use a frequency of 5120 Hz should represent that output.
