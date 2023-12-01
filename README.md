@@ -4,13 +4,13 @@
     <img alt="Microchip Logo." src="images/microchip_logo_black_red.png">
 </picture>
 
-## Sine Wave Demo using the DMA, DAC and PWM drivers
+## Sine Wave Demo using the DMA, DAC and PWM Timer
 
 ![Overall Project](images/Explorer16_32_connection.png)
 
 # Summary
 
-The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to generate a 100 Hz sine wave using the PWM driver. This project is interchangable between the Explorer Board 16/32 with a dsPIC33CK256MP508 PIM and the dsPIC33CK Curiosity development boards.
+The Sine Wave Demo shows an example configuration of the DMA driver to iterate through a 256 point sine look up table to drive the DAC to generate a 100 Hz sine wave using a SCCP1 output compare timer. This project is interchangable between the Explorer Board 16/32 with a dsPIC33CK256MP508 PIM and the dsPIC33CK Curiosity development boards.
 
 ## Related Documentation
 
@@ -24,7 +24,7 @@ The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the D
 
 - [DAC FRM Documentation](https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33-PIC24-FRM-High-Speed-Analog-Comparator-with-Slope-Compensation-DAC-DS70005280.pdf)
 
-### PWM
+### PWM Timer
 - [PWM Driver Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=PWM_16BIT_MELODY_DRIVER&version=latest&redirect=true)
 
 - [PWM FRM Documentation](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/ReferenceManuals/30003035b.pdf)
@@ -37,7 +37,7 @@ The dspic33ck DAC DMA PWM sine wave Demo shows an example configuration of the D
 
 # Hardware Used
 - Debugging tool: MPLAB® PICkit™ 4 In-Circuit Debugger (https://www.microchip.com/PICkit4) **or** PKOB (PICkit On-Board)
-- Optional Oscilloscpope or probe to view the sinewave output.
+- Optional Oscilloscpope or probe to view the sine wave output.
 #### With either of the selected boards:
 - dsPIC33CK Curiosity Development Board (https://www.microchip.com/dsPIC33CKCuriosity)
 - Explorer 16/32 Development Board (https://www.microchip.com/Explorer1632)
@@ -87,7 +87,8 @@ Omitted configurations are default values set by MCC Melody.
 |---|---|---|
 |DAC output Enable|True|This enables the DACOUT pin.|
 
-#### 3. PWM Driver
+#### 3. PWM Timer Driver
+- The PWM timer functionality is only being used to generate an output compare event. No pin will be configured as output.
 
 |Setting|Value|Explaination|
 |---|---|---|
@@ -105,13 +106,13 @@ After proggraming the device the output can be read off of RA4 on the Curiosity 
 
 ![Curiosity Board Pin](images/Curiosity.png)
 
-A 100 Hz sinewave will be present:
+A 100 Hz sine wave will be present:
 
 ![Sine Wave reading on an oscilloscope](images/SineWaveReading.png)
 
-## PWM requested frequency explaination
+## PWM Timer requested frequency explaination
 
-Every SCCP1 event (being used as the DMA trigger to update the DAC value) occurs on every falling edge of the PWM (since PWM utilizes the SCCP1 timer compare). The frequency we select for the PWM in Hz represents the number of SCCP1 events per second. Since the sine lookup table is defined, the SCCP1 event needs to occur 256 times per 1 Hz of the expected output to represent the Correct period. This boils down to a multiplication problem:
+Every SCCP1 event (being used as the DMA trigger to update the DAC value) occurs on every falling edge of the PWM Timer (since triggers the SCCP1 output compare event). The frequency we select in the PWM driver in Hz represents the number of SCCP1 events per second. Since the sine lookup table is defined, the SCCP1 event needs to occur 256 times per 1 Hz of the expected output to represent the Correct period. This boils down to a multiplication problem:
 
 PWM Frequency (Hz) = Points Length (Sine wave table Length) * Required Output Frequency (Hz)
 
