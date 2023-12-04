@@ -21,7 +21,7 @@
 #include "mcc_generated_files/system/system.h"
 #include "mcc_generated_files/dma/dma.h"
 
-volatile  uint16_t sins[256] = {
+volatile  uint16_t sineTable[256] = {
     0x800, 0x82d, 0x85a, 0x887, 0x8b4, 0x8e1, 0x90e, 0x93a, 
     0x967, 0x993, 0x9bf, 0x9eb, 0xa16, 0xa41, 0xa6c, 0xa97, 
     0xac1, 0xaea, 0xb13, 0xb3c, 0xb64, 0xb8c, 0xbb3, 0xbd9, 
@@ -66,7 +66,7 @@ int main(void)
     
     DMA.ChannelDisable(DMA_CHANNEL_0);
     
-    DMA.SourceAddressSet(DMA_CHANNEL_0, &sins[0]);
+    DMA.SourceAddressSet(DMA_CHANNEL_0, &sineTable[0]);
     
     DMA.DestinationAddressSet(DMA_CHANNEL_0, (uint16_t)&DAC1DATH);
     
