@@ -85,11 +85,15 @@ Omitted configurations are default values set by MCC Melody.
 |Data Size|16 bit|Sets that transaction size.|
 |Transfer Count|0x100|The number of times to iterate in one-shot. (256 times)|
 
+![DMA Configurations](images/DMAConfigurations.png)
+
 #### 2. DAC Melody Driver
 
 |Setting|Value|Explaination|
 |---|---|---|
 |DAC output Enable|True|This enables the DACOUT pin.|
+
+![DAC Configurations](images/DACConfigurations.png)
 
 #### 3. PWM Melody Driver
 - The SCCP1 module is being used in PWM mode to generate an capture/compare event. No pin will be configured as output.
@@ -100,6 +104,8 @@ Omitted configurations are default values set by MCC Melody.
 |Requested Frequency (Hz)|25600|This value is calculated based on the number of points to iterate multiplied by the expected output frequecy. *Continued explaination in the explaination section below.|
 |Sync/Trigger|Sync|This is set since PWM is not triggered by any external interrupt.|
 |PWM PLIB Selector|SCCP1|This generates a capture/compare event being used by the DMA driver.|
+
+![Diagram](images/PWMConfigurations.png)
 
 # Operation
 After proggraming the device the output can be read off of P25 on the Explorer Board:
