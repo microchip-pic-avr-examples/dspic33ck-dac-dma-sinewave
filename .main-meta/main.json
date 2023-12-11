@@ -3,11 +3,11 @@
    "category":"com.microchip.ide.project",
    "content":{
       "metaDataVersion":"1.3.0",
-      "name":"com.microchip.mplabx.project.dspic33ck-dac-dma-pwm-sinewave",
+      "name":"com.microchip.mplabx.project.dspic33ck-dac-dma-sinewave",
       "version":"1.0.0",
-      "displayName":"dsPIC33CK DAC DMA PWM Sinewave Demo",
-      "projectName":"dspic33ck-dac-dma-pwm-sinewave",
-      "shortDescription":"This MPLAB® X Melody example shows how to configure the DAC, DMA,and PWM Drieves to generate a 100Hz sine wave output using an 256 point sine wave lookup table.",
+      "displayName":"dsPIC33CK DAC DMA Sinewave Demo",
+      "projectName":"dspic33ck-dac-dma-sinewave",
+      "shortDescription":"This MPLAB® X example shows how to configure the DAC, DMA Drivers to generate a 100Hz sine wave output using an 256 point sine wave lookup table.",
       "ide":{
          "name":"MPLABX",
          "semverRange":">=6.15.0"
@@ -35,7 +35,6 @@
          }
       },
       "keywords":[
-         "PWM",
          "CCP",
          "DAC",
          "DMA",

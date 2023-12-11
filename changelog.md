@@ -1,4 +1,4 @@
-# dspic33ck-dac-dma-pwm-sinewave v1.0.0
+# dspic33ck-dac-dma-sinewave v1.0.0
 ### Release Highlights
 
 
