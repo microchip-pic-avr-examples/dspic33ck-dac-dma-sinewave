@@ -7,7 +7,7 @@
       "version":"1.0.0",
       "displayName":"dsPIC33CK DAC DMA Sinewave Demo",
       "projectName":"dspic33ck-dac-dma-sinewave",
-      "shortDescription":"This MPLAB® X example shows how to configure the DAC, DMA Drivers to generate a 100Hz sine wave output using an 256 point sine wave lookup table.",
+      "shortDescription":"This MPLAB® X IDE example demonstrates how to generate a 100Hz sine wave without CPU intervention by configuring the DAC and DMA Drivers within MCC Melody.",
       "ide":{
          "name":"MPLABX",
          "semverRange":">=6.15.0"
@@ -18,7 +18,7 @@
       },
       "dfp":{
          "name":"dsPIC33CK-MP_DFP",
-         "semverRange":">=1.12.354"
+         "semverRange":">=1.13.366"
       },
 	  "configurator": {
          "name": "MCC",
