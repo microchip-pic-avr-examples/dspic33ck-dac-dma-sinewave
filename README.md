@@ -4,7 +4,7 @@
     <img alt="Microchip Logo." src="images/microchip_logo_black_red.png">
 </picture>
 
-## dspic33ck dac dma pwm sinewave
+## dspic33ck dac dma sinewave
 
 Board Image if any.
 
