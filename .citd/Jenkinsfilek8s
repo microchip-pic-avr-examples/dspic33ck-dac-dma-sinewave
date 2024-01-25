@@ -96,7 +96,9 @@ pipeline {
             steps {
                 script {
 				    misraCheck(
-                        sourceProjectPath: "${env.MPLABX_PROJECT_SOURCE}"
+                        sourceProjectPath: "${env.MPLABX_PROJECT_SOURCE}",
+						excludePattern: "mcc_generated_files/**",
+						misraResultEnforce:true
                     )
                 }
             }
