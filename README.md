@@ -102,6 +102,7 @@ Omitted configurations are default values set by MCC Melody.
 |Module Enable|True|Enables the PWM module.|
 |Requested Frequency (Hz)|25600|This value is calculated based on the number of points to iterate multiplied by the expected output frequecy. *Continued explaination in the explaination section below.|
 |Sync/Trigger|Sync|This is set since PWM is not triggered by any external interrupt.|
+|Interrupt Driven|Disabled|This is disabled so the ISR does not impact the DMA functionality.|
 |PWM PLIB Selector|SCCP1|This generates a capture/compare event being used by the DMA driver.|
 
 ![Diagram](images/PWMConfigurations.png)
@@ -129,18 +130,19 @@ PWM Frequency (Hz) = Points Length (Sine wave table Length) * Required Output Fr
 
 For example, if there is a need to lower the frequency of the sine wave output to 10 Hz with a 256 point sine wave lookup table updating the PWM to use a frequency of 2560 Hz should represent that output.
 
-# Custom Frequency Limit
+**There is however a hardware limit for the PWM requested frequency and the SCCP's interaction with the DMA driver**
 
-**The PWM driver** frequency to select for a desired outcome is limited by the size of the sine lookup table and speed of the DMA. The SCCP plib used in PWM mode is set to use FOSC/2.
-- SCCP runs at 100 MHz.
+When configuring the requested frequency for the PWM there is the calculated frequency listed in Melody. This is done by using the formulas defined by the dsPIC33CK256MP508's datasheet to calculate the period register's values:
 
-**The DMA driver** utilizes the System clock but takes 2 clock cycles to execute a single transfer from the source to the destination. This means the DMA runs at System-Clock/2.
-- DMA runs at 200 MHz / 2 cycles: 100 MHz
-- With 100 MHz this means it takes 10 ns to execute a single instruction.
+$$ CCPxPRL = {Clock Frequency \over (Clock Prescaler)*(Requested Frequency(Hz))}$$
 
-When a SCCP Capture/Compare event is triggered the DMA wll need to copy the entire sine lookup table before the next SCCP Capture/Compare event. 
 
-- DMA will need transfer up to 256 words which will take up to 2560 ns to complete
--  
+For Higher requested frequencies the accuracy of the period is lower. The output compare buffer registers is also affected by this due to its formulas:
 
-The DMA iterates through the sine lookup table every time the PWM module triggers a compare event which is every period. This means if the PWM period is below that of the DMA's speed then the DMA does not transfer values fast enough.
+$$ CCPxRB = {Clock Frequency \over (Clock Prescaler)*(Requested Frequency(Hz))} * {Duty Cycle \over 100}$$
+
+In testing here are the following values for the Min and Max frequencies for PWM to get correct sine wave output results:
+
+|Requested Frequency|Sine wave output frequency|
+|---------------------|----------------------|
+|1 Hz|1 Hz|
