@@ -141,8 +141,15 @@ For Higher requested frequencies the accuracy of the period is lower. The output
 
 $$ CCPxRB = {Clock Frequency \over (Clock Prescaler)*(Requested Frequency(Hz))} * {Duty Cycle \over 100}$$
 
-In testing here are the following values for the Min and Max frequencies for PWM to get correct sine wave output results:
+In testing here are the following values for the Min and Max frequencies for PWM to get correct sine wave output results using a 256 point sine lookup table:
 
-|Requested Frequency|Sine wave output frequency|
+|Requested PWM Frequency|Sine wave output frequency|
 |---------------------|----------------------|
-|1 Hz|1 Hz|
+|25.6 Hz (Near Minimum requested Frequency)| 0.1 Hz|
+|256 Hz|1 Hz|
+|2560 Hz|10 Hz|
+|25600 Hz| 100 Hz|
+|256000 Hz| 1 kHz|
+|2560000 Hz| 9.8 kHz|
+|25600000 Hz|78 kHz|
+|100000000 Hz (Maximum Requested Frequency)|97 kHz|
