@@ -81,14 +81,14 @@ void SCCP1_PWM_Initialize (void)
     CCP1TMRL = 0x0;
     // TMRH 0x0000; 
     CCP1TMRH = 0x0;
-    // PRL 156; 
-    CCP1PRL = 0x9C;
+    // PRL 3906; 
+    CCP1PRL = 0xF42;
     // PRH 0; 
     CCP1PRH = 0x0;
     // CMPA 0; 
     CCP1RA = 0x0;
-    // CMPB 78; 
-    CCP1RB = 0x4E;
+    // CMPB 1953; 
+    CCP1RB = 0x7A1;
     // BUFL 0x0000; 
     CCP1BUFL = 0x0;
     // BUFH 0x0000; 
