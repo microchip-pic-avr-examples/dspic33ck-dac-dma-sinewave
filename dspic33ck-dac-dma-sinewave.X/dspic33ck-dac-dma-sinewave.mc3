@@ -1,4 +1,4 @@
-<config configName="default" projectName="dspic33ck-dac-dma-sinewave" configVersion="1.1" device="dsPIC33CK256MP508" deviceLibraryClass="com.microchip.mcc.melody.Library" coreVersion="5.6.1">
+<config configName="default" projectName="dspic33ck-dac-dma-sinewave" configVersion="1.1" device="dsPIC33CK256MP508" deviceLibraryClass="com.microchip.mcc.melody.Library" coreVersion="5.7.0">
    <usedPackages class="java.util.ArrayList">
       <package packageName="@mchp-mcc/clock-16bit-driver" version="1.2.1" contentType="MELODY">
          <modules class="java.util.ArrayList"/>

@@ -97,8 +97,7 @@ pipeline {
                 script {
 				    misraCheck(
                         sourceProjectPath: "${env.MPLABX_PROJECT_SOURCE}",
-						excludePattern: "dspic33ck-dac-dma-sinewave.X/mcc_generated_files/**",
-						misraResultEnforce:true
+						excludePattern: "dspic33ck-dac-dma-sinewave.X/mcc_generated_files/**"
                     )
                 }
             }

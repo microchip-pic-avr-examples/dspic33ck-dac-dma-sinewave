@@ -2,15 +2,15 @@
 
 manifest_file_version: 1.0.0
 project: dspic33ck-dac-dma-sinewave
-creation_date: 2024-01-30T15:23:58.599-07:00[America/Phoenix]
+creation_date: 2024-02-02T16:03:31.416-07:00[America/Phoenix]
 operating_system: Windows 10
 mcc_mode: IDE
-mcc_mode_version: v6.15
+mcc_mode_version: v6.20
 device_name: dsPIC33CK256MP508
 compiler: XC16 2.10
-mcc_version: 5.4.1
-mcc_core_version: 5.6.1
-content_manager_version: 4.3.2
+mcc_version: 5.5.0
+mcc_core_version: 5.7.0
+content_manager_version: 5.0.0
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
