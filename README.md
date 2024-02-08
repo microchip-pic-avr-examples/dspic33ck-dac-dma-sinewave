@@ -105,7 +105,17 @@ Omitted configurations are default values set by MCC Melody.
 |Interrupt Driven|Disabled|This is disabled so the ISR does not impact the DMA functionality.|
 |PWM PLIB Selector|SCCP1|This generates a capture/compare event being used by the DMA driver.|
 
-![Diagram](images/PWMConfigurations.png)
+![PWM Configurations](images/PWMConfigurations.png)
+
+#### 3. System Clock Settings
+- The Clock settings are configured to the highest possible speed to allow the PWM to work at higher speeds.
+
+|Setting|Value|Explaination|
+|---|---|---|
+|System Clock Source|FRC Oscillator with PLL|FRC is the hardware clock and PLL is required to enabled the maximum frequency below.|
+|Set System(FOSC) Frequency to Maximum|Enabled| This enables the maximum frequency.|
+
+![Clock Settings](images/ClockSettings.png)
 
 # Operation
 After proggraming the device the output can be read off of P25 on the Explorer Board:
@@ -134,14 +144,14 @@ For example, if there is a need to lower the frequency of the sine wave output t
 
 When configuring the requested frequency for the PWM there is the calculated frequency listed in Melody. This is done by using the formulas defined by the dsPIC33CK256MP508's datasheet to calculate the period register's values:
 
-$$ CCPxPRL = {Clock Frequency \over (Clock Prescaler)*(Requested Frequency(Hz))}$$
+![Period Register](images/CCPXPRL.png)
 
 
-For Higher requested frequencies the accuracy of the period is lower. The output compare buffer registers is also affected by this due to its formulas:
+For Higher requested frequencies the accuracy of the period is lower. The output compare buffer register is also affected by this due to its formulas:
 
-$$ CCPxRB = {Clock Frequency \over (Clock Prescaler)*(Requested Frequency(Hz))} * {Duty Cycle \over 100}$$
+![Output Compare Data Buffer](images/CCPXRB.png)
 
-In testing here are the following values for the Min and Max frequencies for PWM to get correct sine wave output results using a 256 point sine lookup table:
+In testing here are the following values for the Min and Max frequencies for PWM to trigger output compare events for sine wave outputs:
 
 |Requested PWM Frequency|Sine wave output frequency|
 |---------------------|----------------------|
