@@ -80,7 +80,7 @@ Omitted configurations are default values set by MCC Melody.
 |Source Address Mode|Incremented|Increments the Source Address value by the Data Size|
 |Source Address|0|This is set within the application code to use the address of the first sine wave point.|
 |Destination Address Mode|Unchanged|This means the destination address will not be affected by the DMA iteration.|
-|Destination Address|0|This is set within the applicaiton code.|
+|Destination Address|0|This is set within the application code.|
 |Data Size|16 bit|Sets that transaction size.|
 |Transfer Count|0x100|The number of times to iterate in one-shot. (256 points)|
 
