@@ -122,7 +122,7 @@ After programming the device the output can be read off of P25 on the Explorer B
 
 ![Explorer Board Pin](images/Explorer16_32.png)
 
-After programming the device the output can be read off of RA4 on the Curiosity Board:
+After programming the device the output can be read off of RA3 on the Curiosity Board:
 
 ![Curiosity Board Pin](images/Curiosity.png)
 
