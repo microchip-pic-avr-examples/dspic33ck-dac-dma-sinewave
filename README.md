@@ -59,13 +59,6 @@ The setup for each board is slightly different:
 
 ## Software Setup
 
-### Programming the Device
-1. Open the dspic33ck_dac_dma_sinewave.X project in MPLAB® X IDE.
-2. Right click the project in "Projects" tab of MPLAB® X IDE and select "Set as Main Project".
-3. Plug in the PKOB (PICkit On-Board) or the PICkit 4 from the board to the PC.
-4. Program the device by selecting the "Make and Program Device (Project dspic33ck_dac_dma_sinewave)" button on the menu bar.
-5. The project should build and program successfully.
-
 ### Peripheral Configurations
 Omitted configurations are default values set by MCC Melody. 
 
@@ -116,6 +109,13 @@ Omitted configurations are default values set by MCC Melody.
 |Set System(FOSC) Frequency to Maximum|Enabled| This enables the maximum frequency.|
 
 ![Clock Settings](images/ClockSettings.png)
+
+### Programming the Device
+1. Open the dspic33ck_dac_dma_sinewave.X project in MPLAB® X IDE.
+2. Right click the project in "Projects" tab of MPLAB® X IDE and select "Set as Main Project".
+3. Plug in the PKOB (PICkit On-Board) or the PICkit 4 from the board to the PC.
+4. Program the device by selecting the "Make and Program Device (Project dspic33ck_dac_dma_sinewave)" button on the menu bar.
+5. The project should build and program successfully.
 
 # Operation
 After programming the device the output can be read off of P25 on the Explorer Board:
