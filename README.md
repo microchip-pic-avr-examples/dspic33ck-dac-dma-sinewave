@@ -76,6 +76,7 @@ Omitted configurations are default values set by MCC Melody.
 |Destination Address|0|This is set within the application code.|
 |Data Size|16 bit|Sets that transaction size.|
 |Transfer Count|0x100|The number of times to iterate in one-shot. (256 points)|
+|Interrupt Driven|True|Enables the DMA to be interrupt driven.|
 
 ![DMA Configurations](images/DMAConfigurations.png)
 
