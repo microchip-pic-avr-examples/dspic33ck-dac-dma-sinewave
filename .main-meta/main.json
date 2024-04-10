@@ -1,0 +1,44 @@
+{
+   "metaDataVersion":"1.0.0",
+   "category":"com.microchip.ide.project",
+   "content":{
+      "metaDataVersion":"1.3.0",
+      "name":"com.microchip.mplabx.project.dspic33ck-dac-dma-sinewave",
+      "version":"1.0.0",
+      "displayName":"dsPIC33CK DAC DMA Sinewave Demo",
+      "projectName":"dspic33ck-dac-dma-sinewave",
+      "shortDescription":"This MPLAB® X IDE example demonstrates how to generate a 100Hz sine wave without CPU intervention by configuring the DAC and DMA Drivers within MCC Melody.",
+      "ide":{
+         "name":"MPLABX",
+         "semverRange":">=6.15.0"
+      },
+      "compiler":{
+         "name":"XC16",
+         "semverRange":"^2.10"
+      },
+      "dfp":{
+         "name":"dsPIC33CK-MP_DFP",
+         "semverRange":">=1.13.366"
+      },
+	  "configurator": {
+         "name": "MCC",
+         "semverRange": ">=5.3.7"
+      },
+      "device":{
+         "metaDataVersion":"1.0.0",
+         "category":"com.microchip.portal.contentRef",
+         "content":{
+            "metaDataVersion":"1.0.0",
+            "category":"com.microchip.device",
+            "name":"dsPIC33CK256MP508",
+            "versionRange":"*"
+         }
+      },
+      "keywords":[
+         "CCP",
+         "DAC",
+         "DMA",
+         "Signal Generation"
+      ]
+   }
+}
